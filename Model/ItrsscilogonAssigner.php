@@ -47,29 +47,29 @@ class ItrsscilogonAssigner extends AppModel {
     }
 
     // Find the eppn and its scope.
-    try {
-      $i = Hash::extract($coPerson['Identifier'], '{n}[type=eppn]');
-      $eppn = $i[0]['identifier'];
-    } catch (Exception $e) {
+    $i = Hash::extract($coPerson['Identifier'], '{n}[type=eppn]');
+    $eppn = $i[0]['identifier'] ?? null;
+    if(empty($eppn)) {
+      $this->log("ItrsscilogonAssigner no eppn Identifier found");
       throw new InvalidArgumentException(_txt('er.itrsscilogonassigner.eppn'));
     }
 
     list($uid, $scope) = explode('@', $eppn);
 
     // Find the official email address.
-    try {
-      $m = Hash::extract($coPerson['EmailAddress'], '{n}[type=official]');
-      $email = $m[0]['mail'];
-    } catch (Exception $e) {
+    $m = Hash::extract($coPerson['EmailAddress'], '{n}[type=official]');
+    $email = $m[0]['mail'] ?? null;
+    if(empty($email)) {
+      $this->log("ItrsscilogonAssigner no official EmailAddress found");
       throw new InvalidArgumentException(_txt('er.itrsscilogonassigner.mail'));
     }
 
     // Find name details.
-    try {
-      $n = Hash::extract($coPerson['Name'], '{n}[type=official]');
-      $given = $n[0]['given'];
-      $family = $n[0]['family'];
-    } catch (Exception $e) {
+    $n = Hash::extract($coPerson['Name'], '{n}[type=official]');
+    $given = $n[0]['given'] ?? null;
+    $family = $n[0]['family'] ?? null;
+    if(empty($given) || empty($family)) {
+      $this->log("ItrsscilogonAssigner no official Name found");
       throw new InvalidArgumentException(_txt('er.itrsscilogonassigner.name'));
     }
 
@@ -108,6 +108,8 @@ class ItrsscilogonAssigner extends AppModel {
       $response = $Http->get('/oauth2/dbService', $params);
 
       if($response->code != 200) {
+        $this->log("ItrsscilogonAssigner error invoking dbService. Response was ");
+        $this->log(print_r($response, true));
         throw new InvalidArgumentException(_txt('er.itrsscilogonassigner.dbservice', array($eppn)));
       }
 
@@ -122,6 +124,7 @@ class ItrsscilogonAssigner extends AppModel {
     }
 
     if(empty($cilogonIdentifiers)) {
+        $this->log("ItrsscilogonAssigner no CILogon user identifier returned by dbService");
         throw new InvalidArgumentException(_txt('er.itrsscilogonassigner.none'));
     }
 
