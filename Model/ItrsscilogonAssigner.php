@@ -84,7 +84,7 @@ class ItrsscilogonAssigner extends AppModel {
     } 
 
     if($scope == 'missouri.edu') {
-      $eppn = $uid . '@missou.edu';
+      $eppn = $uid . '@mizzou.edu';
       $eppns[] = $eppn;
     }
 
