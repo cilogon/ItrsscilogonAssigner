@@ -78,7 +78,7 @@ class ItrsscilogonAssigner extends AppModel {
     $eppns = array();
     $eppns[] = $eppn;
 
-    if($scope == 'umh.edu' || $scope == 'umkc.edu' || $scope = 'mst.edu' || $scope = 'umsl.edu' || $scope = 'missouri.edu') {
+    if($scope == 'umh.edu' || $scope == 'umkc.edu' || $scope == 'mst.edu' || $scope == 'umsl.edu' || $scope == 'missouri.edu') {
       $eppn = $uid . '@umsystem.edu';
       $eppns[] = $eppn;
     } 
