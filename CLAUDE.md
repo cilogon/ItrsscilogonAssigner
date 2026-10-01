@@ -12,6 +12,9 @@ identifiers.
 
 - `Model/ItrsscilogonAssigner.php` -- the assigner logic (`assign()`).
 - `Lib/lang.php` -- localized strings (`er.itrsscilogonassigner.*`).
+- `docs/README.md` -- the staff reference page, indexed from `README.md`.
+  `docs/plans/` holds planning artifacts and is not part of the staff
+  documentation.
 - The remaining directories are the standard CakePHP plugin skeleton and are
   mostly empty placeholders. There is no test suite yet (`Test/` holds only
   placeholders).
@@ -24,6 +27,20 @@ standalone.
 No PHP formatter or style guide is configured for this repository. Match the
 surrounding code (two-space indentation, `if(` with no space, `array()`
 syntax). Ask before reformatting or autofixing.
+
+## Documentation
+
+- When a change alters plugin behavior, update `docs/README.md` in the same
+  pull request.
+- Cite code by file and function name, not line number.
+- Keep the page's section names (How it works, Configuration, OA4MP dbService
+  contract, Troubleshooting, Assumptions and known gaps) aligned with the page
+  names used by the other ITRSS plugin repositories, such as EntraSource, so
+  the ITRSS solution architecture overview can link to them consistently.
+- The repository is public. The IdP entity ID and the in-cluster OA4MP
+  address may appear in the docs, because both are already in the code. Do
+  not add other hostnames, credentials, or the names of Missouri pipeline or
+  provisioner configurations.
 
 ## Pushing
 
