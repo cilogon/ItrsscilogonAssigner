@@ -6,7 +6,7 @@ This page is for CILogon staff who run the Registry and administer the ITRSS CO.
 
 ## Related documentation
 
-The overview of the ITRSS solution architecture, which explains how this plugin fits with the other ITRSS Registry plugins and services, has not been written yet. It will be linked here when it exists.
+The [ITRSS solution architecture overview](https://github.com/cilogon/itrss-policies/blob/main/ITRSS-Solution-Architecture.md) explains how this plugin fits with the other ITRSS Registry plugins and services. It is in a private repository for ITRSS and CILogon staff.
 
 ## How it works
 
